@@ -18,14 +18,25 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## A wrapping method that tries to resolves the cached inverse from the original matrix through getreverse
+## A wrapping method that tries to resolves the cached inverse from the original matrix through  the getreverse method
 
 cacheSolve <- function(x, ...) {
  # ## Return a matrix that is the inverse of 'x'
+  r <- matrix()
+  
   if(!is.null( x$getreverse()))   
-	x$getreverse()
+  {
+     print("resolved from cache")
+	 r <- x$getreverse()
+  }
   else  
-    x$setreverse(solve(x$get()))	   
+  {
+    print("calculated through solve")
+    x$setreverse(solve(x$get()))
+	r <- x$getreverse()
+  }	
+  
+  r
 }
 
 
